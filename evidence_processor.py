@@ -33,7 +33,7 @@ downloads_dir = Path.home() / "Downloads"
 source_video = downloads_dir / "video.webm"
 
 # Define intermediate files
-temp_cleaned_audio = evidence_dir / "audio/cleaned_audio.wav"
+temp_cleaned_audio = evidence_dir / f"audio/{video_name}_input-mejorada-v2.wav"
 
 # Define output files
 final_video = resources_dir / f"{video_name}_output.mp4"
@@ -79,12 +79,13 @@ if is_manual:
 
     # Open file explorer in the audio directory
     open_explorer(audio_dir)
+    while True:
+        input(f"Presiona ENTER cuando tengas el audio limpio y renombrado a '{video_name}_input-mejorada-v2.wav'...")
 
-    input("Presiona ENTER cuando tengas el audio limpio y renombrado a 'cleaned_audio.wav'...")
-
-    if not temp_cleaned_audio.exists():
-        print("Error: no se encontró el archivo 'cleaned_audio.wav'. El script se detendrá.")
-        sys.exit(1)
+        if not temp_cleaned_audio.exists():
+            print(f"Error: no se encontró el archivo '{video_name}_input-mejorada-v2.wav'. El script se detendrá.")
+        else:
+            break
 
 else:
     # 3. Automatic audio cleaning with noisereduce
